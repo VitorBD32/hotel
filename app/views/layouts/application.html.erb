@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<h1>Lista de Hotéis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Endereço</th>
+      <th>Classificação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hotels.each do |hotel| %>
+      <tr>
+        <td><%= hotel.name %></td>
+        <td><%= hotel.address %></td>
+        <td><%= hotel.rating %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>Total de Páginas: <%= @hotels.total_pages %></p>
+
+
+<%= paginate @hotels %>
+
