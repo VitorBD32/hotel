@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @quarto %>
+
+<div>
+  <%= link_to "Edit this quarto", edit_quarto_path(@quarto) %> |
+  <%= link_to "Back to quartos", quartos_path %>
+
+  <%= button_to "Destroy this quarto", @quarto, method: :delete %>
+</div>

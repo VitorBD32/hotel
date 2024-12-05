@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Hospedes</h1>
+
+<div id="hospedes">
+  <% @hospedes.each do |hospede| %>
+    <%= render hospede %>
+    <p>
+      <%= link_to "Show this hospede", hospede %>
+    </p>
+  <% end %>
+</div>
+
+<%= paginate @hospedes %>
+<%= link_to "New hospede", new_hospede_path %>
+<%= link_to 'Exportar CSV', export_csv_hospedes_path(format: :csv), class: 'btn btn-primary' %>

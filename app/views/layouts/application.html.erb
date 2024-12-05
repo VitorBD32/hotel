@@ -1,27 +1,64 @@
 <!DOCTYPE html>
-<h1>Lista de Hotéis</h1>
+<html>
+  <head>
+    <title>HotelApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Endereço</th>
-      <th>Classificação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @hotels.each do |hotel| %>
-      <tr>
-        <td><%= hotel.name %></td>
-        <td><%= hotel.address %></td>
-        <td><%= hotel.rating %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-<p>Total de Páginas: <%= @hotels.total_pages %></p>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">HotelApp</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to 'Hóspedes', hospedes_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Quartos', quartos_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Reservas', reservas_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Funcionários', funcionarios_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Serviços', servicos_path, class: 'nav-link' %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Lista de Hóspedes</h1>
 
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Classificação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @hospedes.each do |hospede| %>
+            <tr>
+              <td><%= hospede.name %></td>
+              <td><%= hospede.address %></td>
+              <td><%= hospede.rating %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<%= paginate @hotels %>
+      <%= paginate @hospedes %>
 
+      <p>Total de Páginas: <%= @hospedes.total_pages %></p>
+
+      <%= link_to 'Exportar CSV', export_csv_hospedes_path(format: :csv), class: 'btn btn-primary' %>
+    </div>
+  </body>
+</html>

@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+/*
+ *= require custom_bootstrap
+ *= require_tree .
+ *= require_self
+*/
+
+@import "bootstrap";

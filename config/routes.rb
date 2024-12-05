@@ -1,3 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
+  resources :servicos, path: 'servicos'
+  resources :funcionarios, path: 'funcionarios'
+  resources :reservas, path: 'reservas'
+  resources :quartos, path: 'quartos'
+  resources :hospedes, path: 'hospedes' do
+    collection do
+      get :export_csv
+    end
+  end
+  root 'hospedes#index'
 end
+
+
+
+
