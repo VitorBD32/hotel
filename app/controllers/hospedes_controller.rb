@@ -3,7 +3,7 @@ class HospedesController < ApplicationController
 
   # GET /hospedes or /hospedes.json
   def index
-    @hospedes = Hospede.all.page(params[:page]).per(10)
+    @hospedes = Hospede.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /hospedes/1 or /hospedes/1.json
@@ -25,7 +25,7 @@ class HospedesController < ApplicationController
 
     respond_to do |format|
       if @hospede.save
-        format.html { redirect_to @hospede, notice: "Hospede was successfully created." }
+        format.html { redirect_to hospedes_path, notice: "Hospede was successfully created." } 
         format.json { render :show, status: :created, location: @hospede }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class HospedesController < ApplicationController
   def update
     respond_to do |format|
       if @hospede.update(hospede_params)
-        format.html { redirect_to @hospede, notice: "Hospede was successfully updated." }
+        format.html { redirect_to hospedes_path, notice: "Hospede was successfully updated." } 
         format.json { render :show, status: :ok, location: @hospede }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,6 +65,6 @@ class HospedesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def hospede_params
-      params.require(:hospede).permit(:nome, :email, :telefone)
+      params.require(:hospede).permit(:nome, :email, :telefone, :address, :rating)
     end
 end

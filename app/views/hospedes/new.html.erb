@@ -1,9 +1,43 @@
-<h1>New hospede</h1>
+<h1>Novo Hóspede</h1>
 
-<%= render "form", hospede: @hospede %>
+<%= form_with(model: @hospede, local: true) do |form| %>
+  <% if @hospede.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hospede.errors.count, "error") %> proibiu este hóspede de ser salvo:</h2>
+      <ul>
+        <% @hospede.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<br>
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
 
-<div>
-  <%= link_to "Back to hospedes", hospedes_path %>
-</div>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telefone %>
+    <%= form.text_field :telefone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Salvar" %>
+  </div>
+<% end %>

@@ -4,6 +4,7 @@ class QuartosController < ApplicationController
   # GET /quartos or /quartos.json
   def index
     @quartos = Quarto.all
+    Rails.logger.debug "DEBUG: Quartos carregados: #{@quartos.inspect}"
   end
 
   # GET /quartos/1 or /quartos/1.json

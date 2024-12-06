@@ -33,32 +33,24 @@
       </div>
     </nav>
     <div class="container">
-      <h1>Lista de Hóspedes</h1>
+      <h1>Lista de Quartos</h1>
 
       <table>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>Classificação</th>
+            <th>Número</th>
+            <th>Tipo</th>
           </tr>
         </thead>
         <tbody>
-          <% @hospedes.each do |hospede| %>
+          <% @quartos.each do |quarto| %>
             <tr>
-              <td><%= hospede.name %></td>
-              <td><%= hospede.address %></td>
-              <td><%= hospede.rating %></td>
+              <td><%= quarto.numero %></td>
+              <td><%= quarto.tipo %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-
-      <%= paginate @hospedes %>
-
-      <p>Total de Páginas: <%= @hospedes.total_pages %></p>
-
-      <%= link_to 'Exportar CSV', export_csv_hospedes_path(format: :csv), class: 'btn btn-primary' %>
     </div>
   </body>
 </html>

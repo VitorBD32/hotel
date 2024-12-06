@@ -123,4 +123,5 @@ gem 'ostruct'
 gem 'mutex_m'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'will_paginate', '~> 3.1.0'
 

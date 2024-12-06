@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Quartos</h1>
 
 <div id="quartos">
-  <% @quartos.each do |quarto| %>
-    <%= render quarto %>
-    <p>
-      <%= link_to "Show this quarto", quarto %>
-    </p>
+  <% if @quartos.present? %>
+    <% @quartos.each do |quarto| %>
+      <p>
+        <strong>Quarto Número:</strong> <%= quarto.numero %>
+      </p>
+      <p>
+        <strong>Tipo:</strong> <%= quarto.tipo_quarto %>
+      </p>
+      <p>
+        <strong>Status:</strong> <%= quarto.status %>
+      </p>
+      <p>
+        <strong>Preço:</strong> <%= number_to_currency(quarto.preco, unit: "R$") %>
+      </p>
+      <p>
+        <%= link_to "Mostre este quarto", quarto %>
+      </p>
+      <hr>
+    <% end %>
+  <% else %>
+    <p>Não há quartos disponíveis no momento.</p>
   <% end %>
 </div>
 
-<%= link_to "New quarto", new_quarto_path %>
+<%= link_to "Novo quarto", new_quarto_path %>
