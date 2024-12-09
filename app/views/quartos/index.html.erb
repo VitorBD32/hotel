@@ -2,24 +2,28 @@
 
 <div id="quartos">
   <% if @quartos.present? %>
-    <% @quartos.each do |quarto| %>
-      <p>
-        <strong>Quarto Número:</strong> <%= quarto.numero %>
-      </p>
-      <p>
-        <strong>Tipo:</strong> <%= quarto.tipo_quarto %>
-      </p>
-      <p>
-        <strong>Status:</strong> <%= quarto.status %>
-      </p>
-      <p>
-        <strong>Preço:</strong> <%= number_to_currency(quarto.preco, unit: "R$") %>
-      </p>
-      <p>
-        <%= link_to "Mostre este quarto", quarto %>
-      </p>
-      <hr>
-    <% end %>
+    <table>
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Preço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quartos.each do |quartos| %>
+          <tr>
+            <td><%= quartos.numero %></td>
+            <td><%= quartos.tipo_quarto %></td>
+            <td><%= quartos.status %></td>
+            <td><%= number_to_currency(quartos.preco, unit: "R$") %></td>
+            <td><%= link_to "Mostre este quarto", quartos %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% else %>
     <p>Não há quartos disponíveis no momento.</p>
   <% end %>

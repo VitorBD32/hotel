@@ -3,6 +3,10 @@ class HospedesController < ApplicationController
 
   # GET /hospedes or /hospedes.json
   def index
+    @hospedes = Hospede.all 
+    @quartos = Quarto.all 
+    @servicos = Servico.all
+    @funcionarios = Funcionario.all
     @hospedes = Hospede.paginate(page: params[:page], per_page: 10)
   end
 

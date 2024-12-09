@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :reservas, path: 'reservas'
   resources :quartos, path: 'quartos'
   resources :hospedes, path: 'hospedes' do
+  resources :hotels
     collection do
       get :export_csv
     end

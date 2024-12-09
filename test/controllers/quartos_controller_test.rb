@@ -34,7 +34,7 @@ class QuartosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update quarto" do
-    patch quarto_url(@quarto), params: { quarto: { numero: @quarto.numero, preco: @quarto.preco, status: @quarto.status, tipo_quarto: @quarto.tipo_quarto } }
+    patch quarto_url(@quarto), params: { quarto: { numero: @quartos.numero, preco: @quartos.preco, status: @quartos.status, tipo_quarto: @quartos.tipo_quarto } }
     assert_redirected_to quarto_url(@quarto)
   end
 

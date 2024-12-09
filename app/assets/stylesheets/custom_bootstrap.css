@@ -1,1 +1,10 @@
 @import "bootstrap";
+
+/* app/assets/stylesheets/custom.css */
+.bg-light-green {
+    background-color: #d4edda; /* Cor verde claro */
+  }
+
+  .center-table
+   { margin: 0 auto; /* Centraliza a tabela */ width: 80%;
+   }

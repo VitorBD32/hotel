@@ -39,7 +39,7 @@ class QuartosController < ApplicationController
   def update
     respond_to do |format|
       if @quarto.update(quarto_params)
-        format.html { redirect_to @quarto, notice: "Quarto was successfully updated." }
+        format.html { redirect_to @quarto, notice: "Quarto foi atualizado." }
         format.json { render :show, status: :ok, location: @quarto }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class QuartosController < ApplicationController
     @quarto.destroy
 
     respond_to do |format|
-      format.html { redirect_to quartos_path, status: :see_other, notice: "Quarto was successfully destroyed." }
+      format.html { redirect_to quartos_path, status: :see_other, notice: "Quarto foi apagado com sucesso." }
       format.json { head :no_content }
     end
   end

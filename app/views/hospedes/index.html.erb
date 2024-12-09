@@ -1,65 +1,101 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HotelApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>HotelApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">HotelApp</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <%= link_to 'Hóspedes', hospedes_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Quartos', quartos_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Reservas', reservas_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Funcionários', funcionarios_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Serviços', servicos_path, class: 'nav-link' %>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container">
-      <h1>Lista de Hóspedes</h1>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>Classificação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @hospedes.each do |hospede| %>
-            <tr>
-              <td><%= hospede.name %></td>
-              <td><%= hospede.address %></td>
-              <td><%= hospede.rating %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <%= will_paginate @hospedes %>
-      
-      <p>Total de Páginas: <%= @hospedes.total_pages %></p>
-
-
-      <%= link_to 'Exportar CSV', export_csv_hospedes_path(format: :csv), class: 'btn btn-primary' %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">HotelApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to 'Hóspedes', hospedes_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Quartos', quartos_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Reservas', reservas_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Funcionários', funcionarios_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Serviços', servicos_path, class: 'nav-link' %>
+        </li>
+      </ul>
     </div>
-  </body>
+  </nav>
+
+  <div class="container mt-5">
+    <h1 class="text-center">Lista de Quartos</h1>
+
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quartos.each do |quarto| %>
+          <tr>
+            <td><%= quarto.numero %></td>
+            <td><%= quarto.tipo_quarto %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h2 class="text-center mt-5">Lista de Serviços</h2>
+
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @servicos.each do |servico| %>
+          <tr>
+            <td><%= servico.nome %></td>
+            <td><%= servico.descricao %></td>
+            <td><%= number_to_currency(servico.preco, unit: "R$") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h2 class="text-center mt-5">Lista de Funcionários</h2>
+
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Cargo</th>
+          <th>Salário</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @funcionarios.each do |funcionario| %>
+          <tr>
+            <td><%= funcionario.nome %></td>
+            <td><%= funcionario.cargo %></td>
+            <td><%= number_to_currency(funcionario.salario, unit: "R$") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>
 </html>

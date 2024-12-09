@@ -1,0 +1,14 @@
+<h1><%= @hotel.name %></h1>
+
+<p>
+  <strong>Endereço:</strong>
+  <%= @hotel.address %>
+</p>
+
+<p>
+  <strong>Avaliação:</strong>
+  <%= @hotel.rating %>
+</p>
+
+<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
+<%= link_to 'Back', hotels_path %>
