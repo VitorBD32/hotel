@@ -39,25 +39,25 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to 'Hóspedes', hospedes_path, class: 'nav-link' %>
+          <%#= link_to 'Hóspedes', administrativo_hospedes_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Quartos', quartos_path, class: 'nav-link' %>
+          <%= link_to 'Quartos', administrativo_quartos_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Reservas', reservas_path, class: 'nav-link' %>
+          <%#= link_to 'Reservas', adminstrativo_reservas_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Funcionários', funcionarios_path, class: 'nav-link' %>
+          <%#= link_to 'Funcionários', administrativo_funcionarios_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Serviços', servicos_path, class: 'nav-link' %>
+          <%#= link_to 'Serviços', administrativo_servicos_path, class: 'nav-link' %>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <% if hospede_signed_in? %>
+        <% if admin_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Logout', destroy_hospede_session_path, method: :delete, class: 'nav-link' %>
+            <%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
           </li>
         <% else %>
           <li class="nav-item">
@@ -69,8 +69,8 @@
   </nav>
 
   <div class="container mt-5">
-    <% if hospede_signed_in? %>
-      <h1 class="text-center">Bem-vindo, <%= current_hospede.email %>!</h1>
+    <% if admin_signed_in? %>
+      <h1 class="text-center">Bem-vindo, <%= current_admin.email %>!</h1>
       <h2 class="text-center">Lista de Quartos</h2>
       <div class="table-responsive">
         <table class="table table-striped table-bordered mt-4">

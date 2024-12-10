@@ -28,7 +28,7 @@ module Administrativo
 
       respond_to do |format|
         if @quarto.save
-          format.html {redirect_to ([:administrativo, @quarto], notice: "Quarto foi criado com sucesso." )}
+          format.html {redirect_to [:administrativo, @quarto], notice: "Quarto foi criado com sucesso." }
           format.json { render :show, status: :created, location: @quarto }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ module Administrativo
     def update
       respond_to do |format|
         if @quarto.update(quarto_params)
-          format.html { redirect_to ([:administrativo, @quarto], notice: "Quarto foi atualizado." )}
+          format.html { redirect_to [:administrativo, @quarto], notice: "Quarto foi atualizado." }
           format.json { render :show, status: :ok, location: @quarto }
         else
           format.html { render :edit, status: :unprocessable_entity }
