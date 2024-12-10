@@ -1,4 +1,4 @@
-<%= form_with(model: quarto) do |form| %>
+<%= form_with(model: [:administrativo, quarto]) do |form| %>
   <% if quarto.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(quarto.errors.count, "error") %> prohibited this quarto from being saved:</h2>

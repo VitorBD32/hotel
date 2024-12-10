@@ -3,11 +3,8 @@ class HospedesController < ApplicationController
 
   # GET /hospedes or /hospedes.json
   def index
-    @hospedes = Hospede.all 
-    @quartos = Quarto.all 
-    @servicos = Servico.all
-    @funcionarios = Funcionario.all
-    @hospedes = Hospede.paginate(page: params[:page], per_page: 10)
+    
+    @hospedes = Hospede.all.paginate(page: params[:page], per_page: 10) 
   end
 
   # GET /hospedes/1 or /hospedes/1.json
@@ -16,7 +13,7 @@ class HospedesController < ApplicationController
 
   # GET /hospedes/new
   def new
-    @hospede = Hospede.new
+    @hospede = Hospede.new 
   end
 
   # GET /hospedes/1/edit
@@ -29,7 +26,7 @@ class HospedesController < ApplicationController
 
     respond_to do |format|
       if @hospede.save
-        format.html { redirect_to hospedes_path, notice: "Hospede was successfully created." } 
+        format.html { redirect_to hospedes_path, notice: "Hóspede criado com sucesso." }
         format.json { render :show, status: :created, location: @hospede }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +39,7 @@ class HospedesController < ApplicationController
   def update
     respond_to do |format|
       if @hospede.update(hospede_params)
-        format.html { redirect_to hospedes_path, notice: "Hospede was successfully updated." } 
+        format.html { redirect_to hospedes_path, notice: "Hóspede atualizado com sucesso." }
         format.json { render :show, status: :ok, location: @hospede }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +53,7 @@ class HospedesController < ApplicationController
     @hospede.destroy
 
     respond_to do |format|
-      format.html { redirect_to hospedes_path, status: :see_other, notice: "Hospede was successfully destroyed." }
+      format.html { redirect_to hospedes_path, notice: "Hóspede excluído com sucesso." }
       format.json { head :no_content }
     end
   end

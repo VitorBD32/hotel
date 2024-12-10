@@ -38,64 +38,76 @@
   <div class="container mt-5">
     <h1 class="text-center">Lista de Quartos</h1>
 
-    <table class="table table-striped mt-4">
-      <thead>
-        <tr>
-          <th>Número</th>
-          <th>Tipo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @quartos.each do |quarto| %>
+    <% if @quartos.present? %>
+      <table class="table table-striped mt-4">
+        <thead>
           <tr>
-            <td><%= quarto.numero %></td>
-            <td><%= quarto.tipo_quarto %></td>
+            <th>Número</th>
+            <th>Tipo</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @quartos.each do |quarto| %>
+            <tr>
+              <td><%= quarto.numero %></td>
+              <td><%= quarto.tipo_quarto %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Não há quartos cadastrados.</p>
+    <% end %>
 
     <h2 class="text-center mt-5">Lista de Serviços</h2>
 
-    <table class="table table-striped mt-4">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Preço</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @servicos.each do |servico| %>
+    <% if @servicos.present? %>
+      <table class="table table-striped mt-4">
+        <thead>
           <tr>
-            <td><%= servico.nome %></td>
-            <td><%= servico.descricao %></td>
-            <td><%= number_to_currency(servico.preco, unit: "R$") %></td>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @servicos.each do |servico| %>
+            <tr>
+              <td><%= servico.nome %></td>
+              <td><%= servico.descricao %></td>
+              <td><%= number_to_currency(servico.preco, unit: "R$") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Não há serviços cadastrados.</p>
+    <% end %>
 
     <h2 class="text-center mt-5">Lista de Funcionários</h2>
 
-    <table class="table table-striped mt-4">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Cargo</th>
-          <th>Salário</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @funcionarios.each do |funcionario| %>
+    <% if @funcionarios.present? %>
+      <table class="table table-striped mt-4">
+        <thead>
           <tr>
-            <td><%= funcionario.nome %></td>
-            <td><%= funcionario.cargo %></td>
-            <td><%= number_to_currency(funcionario.salario, unit: "R$") %></td>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th>Salário</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @funcionarios.each do |funcionario| %>
+            <tr>
+              <td><%= funcionario.nome %></td>
+              <td><%= funcionario.cargo %></td>
+              <td><%= number_to_currency(funcionario.salario, unit: "R$") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Não há funcionários cadastrados.</p>
+    <% end %>
   </div>
 </body>
 </html>

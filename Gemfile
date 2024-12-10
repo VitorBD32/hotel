@@ -124,4 +124,8 @@ gem 'mutex_m'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'will_paginate', '~> 3.1.0'
+gem 'simple_form'
 
+
+
+gem "rails-cache", "~> 0.0.1"

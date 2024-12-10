@@ -28,12 +28,10 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="bg-light-green"> <!-- Aplica a classe bg-light-green -->
-
+<body class="bg-light"> <!-- Alterei a classe para um nome mais comum -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-      <i class="fas fa-hotel"></i> <!-- Ícone do hotel -->
-      HotelApp
+      <i class="fas fa-hotel"></i> HotelApp
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -57,16 +55,13 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
+        <% if hospede_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            <%= link_to 'Logout', destroy_hospede_session_path, method: :delete, class: 'nav-link' %>
           </li>
         <% else %>
           <li class="nav-item">
             <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
           </li>
         <% end %>
       </ul>
@@ -74,118 +69,57 @@
   </nav>
 
   <div class="container mt-5">
-    <h1 class="text-center">Lista de Quartos</h1>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-custom mt-4">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Número</th>
-            <th scope="col">Tipo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @quartos.present? %>
+    <% if hospede_signed_in? %>
+      <h1 class="text-center">Bem-vindo, <%= current_hospede.email %>!</h1>
+      <h2 class="text-center">Lista de Quartos</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered mt-4">
+          <thead>
+            <tr>
+              <th>Número</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
             <% @quartos.each do |quarto| %>
               <tr>
                 <td><%= quarto.numero %></td>
                 <td><%= quarto.tipo_quarto %></td>
               </tr>
             <% end %>
-          <% else %>
-            <tr>
-              <td colspan="2" class="text-center">Nenhum quarto encontrado.</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
-    <h2 class="text-center mt-5">Lista de Serviços</h2>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-custom mt-4">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Preço</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @servicos.present? %>
-            <% @servicos.each do |servico| %>
-              <tr>
-                <td><%= servico.nome %></td>
-                <td><%= servico.descricao %></td>
-                <td><%= number_to_currency(servico.preco, unit: "R$") %></td>
-              </tr>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h2>Login</h2>
+          <% if defined?(simple_form_for) %>
+            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="form-group">
+                <%= f.label :email, "Email:" %>
+                <%= f.email_field :email, required: true, autofocus: true, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password, "Senha:" %>
+                <%= f.password_field :password, required: true, autocomplete: "current-password", class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+              <div class="form-group">
+                <%= f.button :submit, "Entrar", class: "btn btn-primary" %>
+              </div>
             <% end %>
           <% else %>
-            <tr>
-              <td colspan="3" class="text-center">Nenhum serviço encontrado.</td>
-            </tr>
+            <p class="text-danger">O gem `simple_form` não está configurado. Por favor, instale e configure antes de continuar.</p>
           <% end %>
-        </tbody>
-      </table>
-    </div>
-
-    <h2 class="text-center mt-5">Lista de Funcionários</h2>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-custom mt-4">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Cargo</th>
-            <th scope="col">Salário</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @funcionarios.present? %>
-            <% @funcionarios.each do |funcionario| %>
-              <tr>
-                <td><%= funcionario.nome %></td>
-                <td><%= funcionario.cargo %></td>
-                <td><%= number_to_currency(funcionario.salario, unit: "R$") %></td>
-              </tr>
-            <% end %>
-          <% else %>
-            <tr>
-              <td colspan="3" class="text-center">Nenhum funcionário encontrado.</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
-    <h2 class="text-center mt-5">Lista de Reservas</h2>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-custom mt-4">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Check-in</th>
-            <th scope="col">Check-out</th>
-            <th scope="col">Hóspede ID</th>
-            <th scope="col">Quarto ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @reservas.present? %>
-            <% @reservas.each do |reserva| %>
-              <tr>
-                <td><%= reserva.check_in %></td>
-                <td><%= reserva.check_out %></td>
-                <td><%= reserva.hospede_id %></td>
-                <td><%= reserva.quarto_id %></td>
-              </tr>
-            <% end %>
-          <% else %>
-            <tr>
-              <td colspan="4" class="text-center">Nenhuma reserva encontrada.</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
+          <%= link_to "Esqueceu sua senha?", new_password_path(resource_name) %><br />
+          <%= link_to "Registrar-se", new_registration_path(resource_name) %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </body>
-</[_{{{CITATION{{{_1{](https://github.com/himanshuesp/abc/tree/76a95546c33828c31721a3bd08abaa064aff283d/CEO%2Faddp.php)[_{{{CITATION{{{_2{](https://github.com/Vcthtuf/Shop/tree/8785d0f1db1c77150be79db3fbbb84b3a5621f51/build%2Findex.php)[_{{{CITATION{{{_3{](https://github.com/Agilbay04/VLMS-JTI/tree/ac9dee3ecf421da62ff9cf5b76dee9de633b83de/bootstrap-4.6.0%2Fsite%2Fcontent%2Fdocs%2F4.6%2Fcomponents%2Fnavbar.md)[_{{{CITATION{{{_4{](https://github.com/DvC99/Costacar/tree/383478a33c0c5de3e840cd3cde4648a13dac4ea3/includes%2Fheader.php)[_{{{CITATION{{{_5{](https://github.com/kbridson/rails-demos-and-deets-2021-test/tree/b0810423da6d108c10705d8a99adf7d791c2389a/demo-bootstrap-navbar.md)
+</html>
