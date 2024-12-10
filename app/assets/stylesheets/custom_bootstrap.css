@@ -8,3 +8,35 @@
   .center-table
    { margin: 0 auto; /* Centraliza a tabela */ width: 80%;
    }
+
+
+  
+
+.table-custom {
+  margin: 0 auto; /* Centraliza a tabela */
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.table-custom th, .table-custom td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-custom th {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+}
+
+.table-custom tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table-custom tr:hover {
+  background-color: #ddd;
+}
+
+.table-custom td {
+  text-align: center;
+}

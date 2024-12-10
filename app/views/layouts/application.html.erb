@@ -21,6 +21,9 @@
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'custom_bootstrap', media: 'all', 'data-turbolinks-track': 'reload' %> <!-- Inclui o arquivo custom_bootstrap.css -->
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <!-- JavaScript -->
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -28,7 +31,10 @@
 <body class="bg-light-green"> <!-- Aplica a classe bg-light-green -->
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">HotelApp</a>
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-hotel"></i> <!-- Ícone do hotel -->
+      HotelApp
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -50,13 +56,27 @@
           <%= link_to 'Serviços', servicos_path, class: 'nav-link' %>
         </li>
       </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </nav>
 
   <div class="container mt-5">
     <h1 class="text-center">Lista de Quartos</h1>
     <div class="table-responsive">
-      <table class="table table-striped table-bordered mt-4 mx-auto" style="width: 80%;">
+      <table class="table table-striped table-bordered table-custom mt-4">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Número</th>
@@ -82,7 +102,7 @@
 
     <h2 class="text-center mt-5">Lista de Serviços</h2>
     <div class="table-responsive">
-      <table class="table table-striped table-bordered mt-4 mx-auto" style="width: 80%;">
+      <table class="table table-striped table-bordered table-custom mt-4">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Nome</th>
@@ -110,7 +130,7 @@
 
     <h2 class="text-center mt-5">Lista de Funcionários</h2>
     <div class="table-responsive">
-      <table class="table table-striped table-bordered mt-4 mx-auto" style="width: 80%;">
+      <table class="table table-striped table-bordered table-custom mt-4">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Nome</th>
@@ -135,6 +155,37 @@
         </tbody>
       </table>
     </div>
+
+    <h2 class="text-center mt-5">Lista de Reservas</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-custom mt-4">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Check-in</th>
+            <th scope="col">Check-out</th>
+            <th scope="col">Hóspede ID</th>
+            <th scope="col">Quarto ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @reservas.present? %>
+            <% @reservas.each do |reserva| %>
+              <tr>
+                <td><%= reserva.check_in %></td>
+                <td><%= reserva.check_out %></td>
+                <td><%= reserva.hospede_id %></td>
+                <td><%= reserva.quarto_id %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="4" class="text-center">Nenhuma reserva encontrada.</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </body>
-</html>
+</[_{{{CITATION{{{_1{](https://github.com/himanshuesp/abc/tree/76a95546c33828c31721a3bd08abaa064aff283d/CEO%2Faddp.php)[_{{{CITATION{{{_2{](https://github.com/Vcthtuf/Shop/tree/8785d0f1db1c77150be79db3fbbb84b3a5621f51/build%2Findex.php)[_{{{CITATION{{{_3{](https://github.com/Agilbay04/VLMS-JTI/tree/ac9dee3ecf421da62ff9cf5b76dee9de633b83de/bootstrap-4.6.0%2Fsite%2Fcontent%2Fdocs%2F4.6%2Fcomponents%2Fnavbar.md)[_{{{CITATION{{{_4{](https://github.com/DvC99/Costacar/tree/383478a33c0c5de3e840cd3cde4648a13dac4ea3/includes%2Fheader.php)[_{{{CITATION{{{_5{](https://github.com/kbridson/rails-demos-and-deets-2021-test/tree/b0810423da6d108c10705d8a99adf7d791c2389a/demo-bootstrap-navbar.md)

@@ -1,0 +1,9 @@
+=> 
+[32m#<Reserva:0x00007f97053e7e40[0m
+ id: [36m[1mnil[0m,
+ check_in: Tue, 10 Dec 2024,
+ check_out: Sun, 15 Dec 2024,
+ hospede_id: [34m[1m1[0m,
+ quarto_id: [34m[1m101[0m,
+ created_at: [36m[1mnil[0m,
+ updated_at: [36m[1mnil[0m[32m>[0m
