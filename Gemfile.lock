@@ -361,7 +361,6 @@ DEPENDENCIES
   rails (~> 7.0.0)
   rails-cache (~> 0.0.1)
   sass-rails (~> 6.0)
-  sassc-rails
   selenium-webdriver
   simple_form
   spring

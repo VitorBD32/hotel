@@ -1,3 +1,6 @@
+
+
+nano Gemfile
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -36,6 +39,10 @@ gem 'turbolinks', '~> 5'
 # Reduces boot times through caching; required in config/boot.rb
 #gem 'bootsnap', '>= 1.1.0', require: false
 
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
 
 #group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -62,12 +69,13 @@ gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.0'
 
 # Usar Sass para CSS
-
+gem 'sassc-rails'
 
 # Empacotamento de JavaScript
 gem 'webpacker', '~> 5.0'
 
 # Turbolinks acelera a navegação
+gem 'turbolinks', '~> 5'
 
 # Builder de JSON
 gem 'jbuilder', '~> 2.7'
