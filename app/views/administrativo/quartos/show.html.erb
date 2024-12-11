@@ -3,8 +3,8 @@
 <%= render @quarto %>
 
 <div>
-  <%= link_to "Edit this quarto", edit_adiministrativo_quarto_path(@quarto) %> |
-  <%= link_to "Back to quartos", administrativo_quartos_path %>
+  <%= link_to "Editar este quarto", edit_adiministrativo_quarto_path(@quarto) %> |
+  <%= link_to "Volte para quartos", administrativo_quartos_path %>
 
   <%= button_to "Apague este quarto", [:administrativo, @quarto], method: :delete %>
 </div>

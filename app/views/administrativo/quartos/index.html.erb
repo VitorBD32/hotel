@@ -19,7 +19,7 @@
             <td><%= quartos.tipo_quarto %></td>
             <td><%= quartos.status %></td>
             <td><%= number_to_currency(quartos.preco, unit: "R$") %></td>
-            <td><%= link_to "Mostre este quarto", quartos %></td>
+            <td><%= link_to "Mostre este quarto", administrativo_quartos_path(quartos) %></td>
           </tr>
         <% end %>
       </tbody>

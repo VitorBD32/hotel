@@ -2,23 +2,28 @@
 
 /* app/assets/stylesheets/custom.css */
 .bg-light-green {
-    background-color: #d4edda; /* Cor verde claro */
-  }
+  background-color: #d4edda;
+  /* Cor verde claro */
+}
 
-  .center-table
-   { margin: 0 auto; /* Centraliza a tabela */ width: 80%;
-   }
+.center-table {
+  margin: 0 auto;
+  /* Centraliza a tabela */
+  width: 80%;
+}
 
 
-  
+
 
 .table-custom {
-  margin: 0 auto; /* Centraliza a tabela */
+  margin: 0 auto;
+  /* Centraliza a tabela */
   width: 80%;
   border-collapse: collapse;
 }
 
-.table-custom th, .table-custom td {
+.table-custom th,
+.table-custom td {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -39,4 +44,10 @@
 
 .table-custom td {
   text-align: center;
+}
+
+.center-title {
+  text-align: center;
+  margin-top: 20px;
+  /* Opcional, para adicionar um espaço acima do título */
 }

@@ -6,9 +6,9 @@
   <% @funcionarios.each do |funcionario| %>
     <%= render funcionario %>
     <p>
-      <%= link_to "Mostre este funcionario", funcionario %>
+      <%= link_to "Mostre este funcionario", administrativo_funcionarios_path %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "Novo funcionario", new_funcionario_path %>
+<%= link_to "Novo funcionario", administrativo_funcionarios_path %>
